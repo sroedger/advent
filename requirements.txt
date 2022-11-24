@@ -1,2 +1,5 @@
 black
 pytest
+httpx
+jinja2
+markdownify
