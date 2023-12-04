@@ -6,46 +6,30 @@ Advent of Code {{year}}, Day {{day}}
 * data: ./input.txt
 """
 from pathlib import Path
-from typing import Union
+from functools import cache
+import pytest
 
-_DATA = None
 
-
+@cache
 def read_input() -> list[str]:
-    global _DATA
-    if _DATA is not None:
-        return _DATA
     input_data = Path(__file__).parent.joinpath("input.txt")
-    if not input_data.exists():
-        print(f"No input data file found at { input_data.absolute() }")
-        exit(1)
+    assert input_data.exists()
     with input_data.open("r") as f:
-        _DATA = f.readlines()
-    return _DATA
+        return f.readlines()
 
 
-def solve(data: Union[str, list[str]]) -> Union[str, int, float]:
-    return 0
+def solve(data: list[str]) -> tuple[int, int]:
+    return 0, 0
 
 
 def test_solution() -> None:
     assert False
 
 
-def test_part_one() -> None:
-    solution = solve(read_input())
-    assert solution is not None
-
-
-def test_part_two() -> None:
-    solution = solve(read_input())
-    assert solution is not None
-
-
-def main() -> None:
-    solution = solve(read_input())
-    print(solution)
+def test_final_solution() -> None:
+    assert solve(read_input()) == (0, 0)
 
 
 if __name__ == "__main__":
-    main()
+    pytest.main([__file__])
+    print("Answer: ", solve(read_input()))
